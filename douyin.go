@@ -2,17 +2,12 @@ package unwatermark
 
 import (
   "encoding/json"
-  "github.com/gocolly/colly"
   "io/ioutil"
   "net/http"
   "net/url"
   "path"
   "strings"
   "sync"
-)
-
-const (
-  VideoViewUrl = "https://www.douyin.com/video/__VID__?previous_page=app_code_link"
 )
 
 type JsonData struct {
@@ -30,7 +25,6 @@ type Video struct {
 
 type DouYin struct {
   urlMap map[string]string
-  c      *colly.Collector
 }
 
 func NewDouYin(urls []string) *DouYin {
@@ -40,7 +34,6 @@ func NewDouYin(urls []string) *DouYin {
   }
   return &DouYin{
     urlMap: urlMap,
-    c:      colly.NewCollector(),
   }
 }
 func (d *DouYin) GetResults() map[string]string {
