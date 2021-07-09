@@ -2,7 +2,7 @@
 
 ## install
 ~~~
-go get -u github.com/wArrest/unwatermark/new/master
+go get -u github.com/wArrest/unwatermark
 ~~~
 ## usage
 参考测试代码
