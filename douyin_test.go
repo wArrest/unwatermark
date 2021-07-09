@@ -8,7 +8,6 @@ import (
 func TestDouYin_findVid(t *testing.T) {
   //https://www.douyin.com/video/6977379955709578526?previous_page=app_code_link
   d := NewDouYin([]string{})
-
   vid,_ := d.findVid("https://v.douyin.com/epYRLk5/")
   if vid != "6977379955709578526" {
     t.Errorf("解析错误:%v", vid)
@@ -25,7 +24,7 @@ func TestDouYin_findVideoLink(t *testing.T) {
 }
 
 func TestGetResult(t *testing.T){
-  u:="https://v.douyin.com/epYRLk5/"
+  u:="https://v.douyin.com/epjE8r9/"
   d := NewDouYin([]string{u})
   res:=d.GetResults()
   fmt.Println(res[u])

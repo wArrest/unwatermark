@@ -68,6 +68,7 @@ func (d *DouYin) GetResults() map[string]string {
 }
 
 func (d *DouYin) findVid(url1 string) (string, error) {
+  url1 = SimpleCode(url1)
   //如果是网页链接，直接取出来
   if strings.Contains(url1, "/video") {
     vUrl, err := url.Parse(url1)
@@ -78,7 +79,12 @@ func (d *DouYin) findVid(url1 string) (string, error) {
   }
   //如果是短链接，需要去请求一次
   client := http.Client{}
-  resp, _ := client.Do(NewReq(url1))
+  resp, err := client.Do(NewReq(url1))
+  if err != nil {
+    return "", err
+  }
+  defer resp.Body.Close()
+
   vidstr, _ := path.Split(resp.Request.URL.String())
   vid := path.Base(vidstr)
   return vid, nil

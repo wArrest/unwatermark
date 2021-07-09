@@ -1,6 +1,9 @@
 package unwatermark
 
-import "net/http"
+import (
+  "net/http"
+  "strings"
+)
 
 func NewReq(url string)*http.Request {
   req, _ := http.NewRequest("GET", url, nil)
@@ -9,4 +12,11 @@ func NewReq(url string)*http.Request {
   req.Header.Add("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3")
   req.Header.Add("Connection", "keep-alive")
   return req
+}
+
+func SimpleCode(url1 string)string{
+  //简单地处理链接格式
+  url1 = strings.Replace(url1," ","",-1)
+  url1 = strings.Replace(url1,"\n","",-1)
+  return url1
 }
