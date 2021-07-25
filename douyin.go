@@ -48,12 +48,11 @@ func (d *DouYin) GetResults() map[string]string {
       if err != nil {
         wg.Done()
         <-c
+        return
       }
       d.urlMap[url1] = d.findVideoLink(vid)
-      defer func() {
-        wg.Done()
-        <-c
-      }()
+      wg.Done()
+      <-c
     }(url1)
   }
   wg.Wait()
