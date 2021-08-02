@@ -11,4 +11,7 @@ func TestSimpleCode(t *testing.T){
   xurlsStrict := xurls.Strict()
   output := xurlsStrict.FindAllString(url, -1)
   fmt.Println(output)
+  url="https://www.kuaishou.com/f/X99lf0uW25hn1vK_A"
+  output = xurlsStrict.FindAllString(url, -1)
+  fmt.Println(output)
 }

@@ -71,7 +71,7 @@ func (d *DouYin) findVid(url1 string) (string, error) {
   }
   //如果是短链接，需要去请求一次
   client := http.Client{}
-  resp, err := client.Do(NewReq(url1))
+  resp, err := client.Do(NewReq(url1,nil))
   if err != nil {
     return "", err
   }
@@ -85,7 +85,7 @@ func (d *DouYin) findVideoLink(vid string) string {
   // 通过这个接口获取视频信息，其中包括带有水印的链接
   url := "https://www.iesdouyin.com/web/api/v2/aweme/iteminfo/?item_ids=" + vid + ""
   client := http.Client{}
-  resp, _ := client.Do(NewReq(url))
+  resp, _ := client.Do(NewReq(url,nil))
   respBody, _ := ioutil.ReadAll(resp.Body)
   data := JsonData{}
   json.Unmarshal(respBody, &data)
@@ -93,7 +93,7 @@ func (d *DouYin) findVideoLink(vid string) string {
     return ""
   }
   videoLink := "https://aweme.snssdk.com/aweme/v1/play/?video_id=" + data.ItemList[0].Video.Vid + "&ratio=720p&line=0"
-  resp, err := client.Do(NewReq(videoLink))
+  resp, err := client.Do(NewReq(videoLink,nil))
   if err!=nil {
     return ""
   }
