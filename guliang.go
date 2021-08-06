@@ -1,14 +1,13 @@
 package unwatermark
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
-	"net/http"
-	"net/url"
-	"path"
-	"strings"
-	"sync"
+  "encoding/json"
+  "fmt"
+  "io/ioutil"
+  "net/http"
+  "net/url"
+  "path"
+  "sync"
 )
 
 type Guliang struct {
@@ -51,8 +50,7 @@ func (g *Guliang) GetResults() map[string]string {
 
 func (g *Guliang) findUrl(url1 string) (string, error) {
 	//去除换行和空格
-	url1 = strings.Replace(url1, "\n", "", -1)
-	url1 = strings.Replace(url1, " ", "", -1)
+	url1 = SimpleCode(url1)
 	up, err := url.Parse(url1)
   if err!=nil {
     return "", err
