@@ -1,6 +1,10 @@
 package unwatermark
 
-import "sync"
+import (
+	"github.com/gin-gonic/gin"
+	"strings"
+	"sync"
+)
 
 type Media interface {
 	//获取批量处理的合集
@@ -53,3 +57,14 @@ func (base BaseMedia) GetResult(data []string) []LinkData {
 	return result
 }
 func (base BaseMedia) GetRealLink(txt string) (string, error) { return "", nil }
+
+func GetMedia(rawText string) Media {
+	if strings.Contains(rawText, "kuaishou") {
+		return &Ks{}
+	} else if strings.Contains(rawText, "douyin") {
+		return &DouYin{}
+	} else if strings.Contains(rawText, "cc.oceanengine.com") {
+		return &GuLiang{}
+	}
+	return nil
+}

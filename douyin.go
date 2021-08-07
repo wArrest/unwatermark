@@ -24,7 +24,7 @@ type DouYin struct {
 	BaseMedia
 }
 
-func (d DouYin) GetRealLink(txt string) (string, error) {
+func (d *DouYin) GetRealLink(txt string) (string, error) {
 	vid, err := d.findVid(txt)
 	if err != nil {
 		return "", err
@@ -49,7 +49,7 @@ func (d DouYin) GetRealLink(txt string) (string, error) {
 	return resp.Request.URL.String(), nil
 }
 
-func (d DouYin) findVid(txt string) (string, error) {
+func (d *DouYin) findVid(txt string) (string, error) {
   txt = SimpleTxt(txt)
   //如果是网页链接，直接取出来
   if strings.Contains(txt, "/video") {
