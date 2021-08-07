@@ -2,7 +2,6 @@ package unwatermark
 
 import (
   "bytes"
-  "fmt"
   "mvdan.cc/xurls/v2"
   "net/http"
 )
@@ -20,14 +19,13 @@ func NewReq(url string, body []byte) *http.Request {
   req.Header.Add("Connection", "keep-alive")
   return req
 }
-
-func SimpleCode(url1 string) string {
+//提取有用的链接部分
+func SimpleTxt(txt string) string {
   //提取url
   xurlsStrict := xurls.Strict()
-  output := xurlsStrict.FindAllString(url1, -1)
+  output := xurlsStrict.FindAllString(txt, -1)
   if len(output) != 1 {
     return ""
   }
-  fmt.Println(output)
   return output[0]
 }
