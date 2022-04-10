@@ -1,7 +1,6 @@
 package unwatermark
 
 import (
-	"github.com/gin-gonic/gin"
 	"strings"
 	"sync"
 )

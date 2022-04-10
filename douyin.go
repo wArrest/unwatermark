@@ -50,23 +50,23 @@ func (d *DouYin) GetRealLink(txt string) (string, error) {
 }
 
 func (d *DouYin) findVid(txt string) (string, error) {
-  txt = SimpleTxt(txt)
-  //如果是网页链接，直接取出来
-  if strings.Contains(txt, "/video") {
-    vUrl, err := url.Parse(txt)
-    if err != nil {
-      return "", err
-    }
-    return path.Base(vUrl.Path), nil
-  }
-  //如果是短链接，需要去请求一次
-  client := http.Client{}
-  resp, err := client.Do(NewReq(txt, nil))
-  if err != nil {
-    return "", err
-  }
-  defer resp.Body.Close()
-  vidstr, _ := path.Split(resp.Request.URL.String())
-  vid := path.Base(vidstr)
-  return vid, nil
+	txt = SimpleTxt(txt)
+	//如果是网页链接，直接取出来
+	if strings.Contains(txt, "/video") {
+		vUrl, err := url.Parse(txt)
+		if err != nil {
+			return "", err
+		}
+		return path.Base(vUrl.Path), nil
+	}
+	//如果是短链接，需要去请求一次
+	client := http.Client{}
+	resp, err := client.Do(NewReq(txt, nil))
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+	vidstr, _ := path.Split(resp.Request.URL.String())
+	vid := path.Base(vidstr)
+	return vid, nil
 }
